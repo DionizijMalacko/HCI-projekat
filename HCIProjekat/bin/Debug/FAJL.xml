@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<Kolekcija xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Spomenici />
+  <Tipovi>
+    <Tip>
+      <Id>lo</Id>
+      <Ime>gy5454545454</Ime>
+      <Opis>gy</Opis>
+      <IkonicaPutanja>C:\Users\Denim\Desktop\Obradjene slike\photoshop\IMG_5501-Recovered.jpg</IkonicaPutanja>
+    </Tip>
+  </Tipovi>
+  <Etikete />
+</Kolekcija>

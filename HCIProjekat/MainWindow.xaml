@@ -1,0 +1,138 @@
+﻿<Window x:Class="HCIProjekat.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HCIProjekat"
+        xmlns:cmd="clr-namespace:HCIProjekat.Komande"
+        xmlns:mods="clr-namespace:HCIProjekat.Modeli"
+        mc:Ignorable="d"
+        Title="Spomenici kulture" Height="542.8" Width="886.8" FontSize="20" WindowStartupLocation="CenterScreen" >
+
+
+    <Window.Resources>
+        <BitmapImage x:Key="FolderOpen" UriSource="HCIProjekat/Images/foldero.png"/>
+        <BitmapImage x:Key="FolderClosed" UriSource="HCIProjekat/Images/folder.png"/>
+        <Style x:Key="SmallIcon" TargetType="Image">
+            <Setter Property="MaxWidth" Value="20"/>
+            <Setter Property="MaxHeight" Value="20"/>
+            <Setter Property="Margin" Value="1"/>
+        </Style>
+
+    </Window.Resources>
+
+    <Window.CommandBindings>
+        <CommandBinding Command="{x:Static cmd:RoutedCommands.FormaSpomenik}" Executed="NoviSpomenik_Executed" />
+        <CommandBinding Command="{x:Static cmd:RoutedCommands.FormaTip}" Executed="NoviTips_Executed" />
+        <CommandBinding Command="{x:Static cmd:RoutedCommands.FormaEtiketa}" Executed="NovaEtiketa_Executed" />
+        <CommandBinding Command="{x:Static cmd:RoutedCommands.TabelaSpomenici}" Executed="PregledSpomenika_Executed" />
+        <CommandBinding Command="{x:Static cmd:RoutedCommands.TabelaEtikete}" Executed="PregledEtiketa_Executed" />
+        <CommandBinding Command="{x:Static cmd:RoutedCommands.TabelaTipovi}" Executed="PregledTip_Executed" />
+    </Window.CommandBindings>
+
+
+    <DockPanel>
+        <DockPanel DockPanel.Dock="Bottom" Background="DarkSlateGray">
+            <Label DockPanel.Dock="Bottom" Content="Status bar:" FontSize="13" Height="25"></Label>
+        </DockPanel>
+        <DockPanel>
+            <Menu DockPanel.Dock="Top" Background="LightGray">
+                <Menu.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <DockPanel HorizontalAlignment="Left"></DockPanel>
+                    </ItemsPanelTemplate>
+                </Menu.ItemsPanel>
+
+                <MenuItem Header="_Dodaj">
+                    <MenuItem Header="_Novi Spomenik" Command="{x:Static cmd:RoutedCommands.FormaSpomenik}" ></MenuItem>
+                    <MenuItem Header="_Novi Tip" Command="{x:Static cmd:RoutedCommands.FormaTip}" ></MenuItem>
+                    <MenuItem Header="_Novu Etiketu"  Command="{x:Static cmd:RoutedCommands.FormaEtiketa}"  ></MenuItem>
+                </MenuItem>
+
+                <MenuItem Header="_Pregled" >
+                    <MenuItem Header="Spomenika"  Command="{x:Static cmd:RoutedCommands.TabelaSpomenici}" />
+                    <MenuItem Header="Tipova" Command="{x:Static cmd:RoutedCommands.TabelaTipovi}"  />
+                    <MenuItem Header="Etiketa"  Command="{x:Static cmd:RoutedCommands.TabelaEtikete}"  />
+                </MenuItem>
+
+                <MenuItem Header="_Pomoć">
+                    <MenuItem Header="O projektu" Click="About_Click" />
+                    <MenuItem Header="Pomoc" Click="Pomoc_Click" />
+                </MenuItem>
+
+                <!--
+                <MenuItem Header="_Dodaj" FontSize="16">
+                    <MenuItem Header="_Spomenik" Command="cmd:RoutedCommands.FormaSpomenik"></MenuItem>
+                    <MenuItem Header="_Etiketa" Command="cmd:RoutedCommands.FormaEtiketa"></MenuItem>
+                    <MenuItem Header="_Tip" Command="cmd:RoutedCommands.FormaTip"></MenuItem>
+                </MenuItem>
+
+                <MenuItem Header="_Pregled" FontSize="16">
+                    <MenuItem Header="_Spomenik" Command="cmd:RoutedCommands.TabelaSpomenici"></MenuItem>
+                    <MenuItem Header="_Etiketa" Command="cmd:RoutedCommands.TabelaEtikete"></MenuItem>
+                    <MenuItem Header="_Tip" Command="cmd:RoutedCommands.TabelaTipovi"></MenuItem>
+                </MenuItem>-->
+
+                <MenuItem Header="_Ukloni" >
+                    <MenuItem Header="Ukloni sa mape" Click="UkloniSaMape_Click" />
+                </MenuItem>
+
+
+            </Menu>
+            <Grid DockPanel.Dock="Bottom" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                <DockPanel>
+                    <Grid DockPanel.Dock="Left" Width="200" Background="Gray">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="131*"/>
+                            <ColumnDefinition Width="69*"/>
+                        </Grid.ColumnDefinitions>
+                        <TreeView Name="treeSpomenici" ItemsSource="{Binding Tipovi}" ToolTip="Prevucite zeljeni spomenik na mapu" Margin="5,5,5,5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" PreviewMouseLeftButtonDown="Stablo_PreviewMouseLeftButtonDown" MouseMove="Stablo_MouseMove" Grid.ColumnSpan="2">
+                            <TreeView.Resources>
+                                <HierarchicalDataTemplate DataType="{x:Type mods:Tip}" ItemsSource="{Binding TipSpomenici}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Margin="0,0,5,0">
+                                            <Image.Style>
+                                                <Style BasedOn="{StaticResource ResourceKey=SmallIcon}" TargetType="Image">
+                                                    <Setter Property="Source" Value="{Binding IkonicaPutanja}"/>
+                                                </Style>
+                                            </Image.Style>
+                                        </Image>
+                                        <TextBlock Text="{Binding Id}"/>
+                                        <StackPanel.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem Header="Dodaj" Command="{Binding Add}"></MenuItem>
+                                            </ContextMenu>
+                                        </StackPanel.ContextMenu>
+                                    </StackPanel>
+                                </HierarchicalDataTemplate>
+                                <DataTemplate DataType="{x:Type mods:Spomenik}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Margin="0,0,5,0">
+                                            <Image.Style>
+                                                <Style BasedOn="{StaticResource ResourceKey=SmallIcon}" TargetType="Image">
+                                                    <Setter Property="Source" Value="{Binding IkonicaPutanja}"/>
+                                                </Style>
+                                            </Image.Style>
+                                        </Image>
+                                        <TextBlock Text="{Binding Id}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </TreeView.Resources>
+                        </TreeView>
+                    </Grid>
+
+                    <Grid DockPanel.Dock="Right" Background="LightGray">
+                        <Canvas x:Name="MapaSveta" Margin="12,12,12,12" AllowDrop="True" DragEnter="Canvas_DragEnter" Drop="Canvas_Drop" >
+                            <Canvas.Background>
+                                <ImageBrush ImageSource="Images/mapaSveta1.jpg"></ImageBrush>
+                            </Canvas.Background>
+                        </Canvas>
+                    </Grid>
+                </DockPanel>
+
+            </Grid>
+        </DockPanel>
+
+    </DockPanel>
+
+</Window>

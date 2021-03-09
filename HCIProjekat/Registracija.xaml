@@ -1,0 +1,32 @@
+﻿<Window x:Class="HCIProjekat.Registracija"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:h="clr-namespace:HCIProjekat.Help"
+        
+        xmlns:local="clr-namespace:HCIProjekat"
+        mc:Ignorable="d"
+        ResizeMode="NoResize"
+        
+        Title="Registracija novog korisnika" Height="373.358" Width="376.643">
+
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Images/backgroundLogin.jpg"/>
+        </Grid.Background>
+        <Label x:Name="label" Content="Registracija novog korisnika:" HorizontalAlignment="Center" Height="38" Margin="79,25,69,0" VerticalAlignment="Top" Width="223" FontSize="16"/>
+        <Label x:Name="label_Copy" Content="Korisničko ime:" HorizontalAlignment="Left" Height="30" Margin="69,68,0,0" VerticalAlignment="Top" Width="91"/>
+        <Label x:Name="label_Copy1" Content="Lozinka:" HorizontalAlignment="Left" Height="30" Margin="69,103,0,0" VerticalAlignment="Top" Width="67"/>
+        <TextBox x:Name="korisnickoImeBox" Text="{Binding KorisnickoIme}" HorizontalAlignment="Left" Height="30" Margin="172,68,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" FontSize="16"  />
+        <Button x:Name="sacuvaj" Content="Registracija" HorizontalAlignment="Left" Height="27" Margin="39,288,0,0" VerticalAlignment="Top" Width="97" Click="sacuvaj_Click"/>
+        <Button x:Name="odustani" Content="Izlaz" HorizontalAlignment="Left" Height="27" Margin="236,288,0,0" VerticalAlignment="Top" Width="96" Click="odustani_Click"/>
+        <TextBox x:Name="passwordBox" Text="{Binding Lozinka}" HorizontalAlignment="Left" Margin="172,103,0,0" VerticalAlignment="Top" Width="130" Height="30" 
+                     FontSize="16" TextChanged="passwordBox_TextChanged"  />
+        <Label x:Name="label_Copy2" Content="Potvrda lozinke:" HorizontalAlignment="Left" Height="30" Margin="69,138,0,0" VerticalAlignment="Top" Width="98"/>
+        <TextBox x:Name="passwordBox2"  Text="{Binding Lozinka2}" HorizontalAlignment="Left" Margin="172,138,0,0" VerticalAlignment="Top" Width="130" Height="30" 
+            FontSize="16" TextChanged="passwordBox_Copy_TextChanged"  />
+
+
+    </Grid>
+</Window>

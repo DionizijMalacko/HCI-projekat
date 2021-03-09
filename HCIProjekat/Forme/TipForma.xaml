@@ -1,0 +1,97 @@
+﻿<Window x:Class="HCIProjekat.Forme.TipForma"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HCIProjekat.Forme"
+        xmlns:val="clr-namespace:HCIProjekat.Validacije"
+        mc:Ignorable="d"
+        Title="TipForma" Height="350" Width="500" WindowStartupLocation="CenterScreen">
+    <DockPanel>
+        <DockPanel DockPanel.Dock="Bottom" Background="DarkSlateGray">
+            <Label DockPanel.Dock="Bottom" Height="20" Content="Status bar:" FontSize="9"></Label>
+        </DockPanel>
+        <DockPanel DockPanel.Dock="Top" VerticalAlignment="Stretch">
+            <Grid Background="LightSlateGray">
+                <Label Content="ID:" HorizontalAlignment="Left" Margin="34,23,0,0" VerticalAlignment="Top"/>
+                <TextBox Name="id" ToolTip="Obavezan unos oznake tipa, Dozvoljen unos slova, brojeva i donje crte." HorizontalAlignment="Left" Height="23" Margin="188,26,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="248" Background="WhiteSmoke">
+                    <TextBox.Text>
+                        <Binding Path="TxtId" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                            <Binding.ValidationRules>
+                                <val:ValidacijaTextBox ValidatesOnTargetUpdated="True" />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                    <Validation.ErrorTemplate>
+                        <ControlTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <AdornedElementPlaceholder Grid.Column="0" Grid.Row="0" x:Name="textBox"/>
+                                <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding [0].ErrorContent}" Foreground="Red" VerticalAlignment="Top" FontSize="22" FontWeight="Medium"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </Validation.ErrorTemplate>
+                </TextBox>
+
+                <Label Content="Ime:" HorizontalAlignment="Left" Margin="34,66,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.079,0.538"/>
+                <TextBox Name="ime" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" Margin="188,66,0,0" Background="WhiteSmoke">
+                    <TextBox.Text>
+                        <Binding Path="TxtIme" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                            <Binding.ValidationRules>
+                                <val:ValidacijaTextBox ValidatesOnTargetUpdated="True" />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                    <Validation.ErrorTemplate>
+                        <ControlTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <AdornedElementPlaceholder Grid.Column="0" Grid.Row="0" x:Name="textBox"/>
+                                <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding [0].ErrorContent}" Foreground="Red" VerticalAlignment="Top" FontSize="22" FontWeight="Medium"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </Validation.ErrorTemplate>
+                </TextBox>
+
+                <Label Content="Opis:" HorizontalAlignment="Left" Margin="34,106,0,0" VerticalAlignment="Top"/>
+                <TextBox Name="opis" HorizontalAlignment="Left" Height="46" Margin="188,106,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="248" Background="WhiteSmoke">
+                    <TextBox.Text>
+                        <Binding Path="TxtOpis" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                            <Binding.ValidationRules>
+                                <val:ValidacijaTextBox ValidationStep="RawProposedValue" />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+
+                <Label Content="Ikonica:" HorizontalAlignment="Left" Margin="34,194,0,0" VerticalAlignment="Top"/>
+                <Rectangle Name="okvir" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="63" Margin="188,172,0,0" Stroke="Black" VerticalAlignment="Top" Width="130"/>
+                <Image Name="ikonica"  Stretch="Fill"  HorizontalAlignment="Left" Height="63" Margin="188,172,0,0" VerticalAlignment="Top" Width="130"/>
+                <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="63" Margin="188,172,0,0" VerticalAlignment="Top" Width="130"/>
+                <Button Content="Izaberi ikonicu" ToolTip="Opcion unos slike tipa" HorizontalAlignment="Left" Margin="340,197,0,0" VerticalAlignment="Top" Height="23" Width="96" Click="Button_Izaberi_Ikonicu"/>
+
+
+                <Button Content="Sačuvaj" HorizontalAlignment="Left" Margin="188,265,0,0" VerticalAlignment="Top" Height="23" Width="95" Click="Button_Sacuvaj" Background="LightGray"/>
+                <Button Content="Odustani" HorizontalAlignment="Left" Margin="341,265,0,0" VerticalAlignment="Top" Height="23" Width="95" Click="Button_Odustani" Background="Gray"/>
+
+
+            </Grid>
+
+        </DockPanel>
+
+    </DockPanel>
+</Window>

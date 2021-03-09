@@ -1,0 +1,1 @@
+[{"Id":"3443","Boja":"#FF708090","Opis":"sdsdasdaasd"},{"Id":"4444","Boja":"#FF87CEEB","Opis":"omg omg "},{"Id":"idemoo","Boja":"#FF800080","Opis":"ooooooooo"},{"Id":"77","Boja":"#FF800000","Opis":"Opis"}]

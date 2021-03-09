@@ -1,0 +1,51 @@
+﻿<Window x:Class="HCIProjekat.Tabele.TipTabela"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HCIProjekat.Tabele"
+        mc:Ignorable="d"
+        Title="TipTabela" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+    <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="DarkSlateGray">
+        <Label Content="Pretraži:"  ToolTip="Pretrazite po oznakama i nazivima" Margin="10,10,307,0" Height="28" VerticalAlignment="Top"/>
+        <TextBox  ToolTip="Pretraga tipova po oznakama" Name="searchBox" Margin="150,10,9.6,0"  Height="28" VerticalAlignment="Top" TextChanged="SearchBox_TextChanged" />
+
+        <DataGrid x:Name="dgrMain" IsReadOnly="True" AutoGenerateColumns="False" ItemsSource="{Binding Path=Tp}" Margin="0,43,-0.4,32" Background="LightGray">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="3*"/>
+                <DataGridTextColumn Header="Ime" Binding="{Binding Ime}" Width="3*"/>
+                <DataGridTextColumn Header="Opis" Binding="{Binding Opis}" Width="3*"/>
+                <DataGridTemplateColumn Header="Ikonica" Width="3*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding IkonicaPutanja}" Height="20" Width="20"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+            <DataGrid.RowDetailsTemplate>
+
+                <DataTemplate>
+                    <DockPanel Background="Honeydew">
+                        <Image DockPanel.Dock="Bottom" Height="80" Source="{Binding Path=IkonicaPutanja}"/>
+                        <Grid Margin="5,5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                        </Grid>
+                    </DockPanel>
+
+                </DataTemplate>
+            </DataGrid.RowDetailsTemplate>
+
+        </DataGrid>
+        <Button Content="Obrisi" HorizontalAlignment="Right" Margin="0,0,20,6" VerticalAlignment="Bottom" Width="69" Height="21" Click="Button_Obrisi" Background="LightGray"/>
+        <Button Content="Izmeni" HorizontalAlignment="Right" Margin="0,0,96,6" VerticalAlignment="Bottom" Width="69" Height="21" Click="Button_Izmeni" Background="LightGray"/>
+
+    </Grid>
+</Window>
